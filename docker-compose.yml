@@ -9,8 +9,12 @@ services:
       - "3000:3000"
     volumes:
       - ../frontend:/usr/app
+    environment:
+      API_TOKEN: ${API_TOKEN}
+      API_URL: ${API_URL}
     networks:
       - strapi
+
   cms:
     build:
       context: ../cms
@@ -33,6 +37,7 @@ services:
       DATABASE_SSL: "false"
     networks:
       - strapi
+
   db:
     image: postgres:14.1-alpine
     restart: always
